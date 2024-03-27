@@ -1,14 +1,13 @@
-// This configuration is used to for the Sanity Studio that’s mounted on the `/app/admin/[[...index]]/page.tsx` route. 
+// This configuration is used to for the Sanity Studio that’s mounted on the `/app/admin/[[...index]]/page.tsx` route.
 
 // The /admin/[[index]]/page.tsx ensures that any route including the admin endpoint redirects to the Sanity Studio
-
 
 import { visionTool } from '@sanity/vision';
 import { defineConfig } from 'sanity';
 import { structureTool } from 'sanity/structure';
 
 import { apiVersion, dataset, projectId } from './sanity/env';
-import { schema } from './sanity/schema';
+import { schema } from './sanity/schemas';
 
 export default defineConfig({
   // This the URL where the embedded Sanity studio will live
