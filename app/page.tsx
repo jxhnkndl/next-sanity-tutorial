@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 // Import utility function for fetching project data from CMS
 import { getProjects } from '@/sanity/sanity-utils';
@@ -6,6 +7,8 @@ import { getProjects } from '@/sanity/sanity-utils';
 export default async function Home() {
   // Fetch all projects from CMS on the server
   const projects = await getProjects();
+
+  console.log(projects);
 
   return (
     <div className='max-w-5xl mx-auto py-20'>
@@ -25,22 +28,23 @@ export default async function Home() {
 
       <div className='mt-5 grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
         {projects.map((project) => (
-          <div
-            className='border-gray-500 border rounded-lg p-3'
+          <Link
+            href={`/projects/${project.slug}`}
+            className='border-gray-500 border rounded-lg p-1'
             key={project._id}>
             {project.image && (
               <Image
                 src={project.image}
                 alt={project.name}
-                width={250}
-                height={100}
-                className='object-cover rounded-lg border border-gray-500'
+                width={750}
+                height={300}
+                className='hover:scale-[1.05] transition-all object-cover rounded-lg border border-gray-500'
               />
             )}
             <div className='font-extrabold bg-gradient-to-r from-orange-400 via-red-500 to-purple-600 bg-clip-text text-transparent'>
               {project.name}
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
