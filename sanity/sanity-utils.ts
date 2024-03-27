@@ -1,8 +1,12 @@
 import { createClient, groq } from 'next-sanity';
 import { apiVersion, dataset, projectId } from './env';
 
+import { Project } from '@/types/project';
+
 // Create client for reading data out of CMS
-export async function getProjects() {
+// This funtion will RETURN a promise that resolves to an array of Projects
+// Defining the type here will make getProjects() usable anywhere without
+export async function getProjects(): Promise<Project[]> {
   const client = createClient({
     projectId,
     dataset,

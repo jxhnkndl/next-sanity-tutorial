@@ -1,7 +1,15 @@
-export default function Home() {
+// Import utility function for fetching project data from CMS
+import { getProjects } from '@/sanity/sanity-utils';
+
+export default async function Home() {
+  // Fetch all projects from CMS on the server
+  const projects = await getProjects();
+
   return (
     <main>
-      <h1>My Blog</h1>
+      {projects.map((project) => (
+        <div key={project._id}>{project.name}</div>
+      ))}
     </main>
   );
 }
